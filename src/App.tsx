@@ -7,7 +7,7 @@ import './globals.css'
 import {Routes, Route} from 'react-router-dom'
 const App = () => {
   return (
-    <main className='h-screen flex'>
+    <main className='flex'>
       <Routes>
         <Route element={<AuthLayout />}>
           <Route path='/sign-in' element= {<SignIn />} />
