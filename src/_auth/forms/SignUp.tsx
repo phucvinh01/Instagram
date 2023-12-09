@@ -15,6 +15,7 @@ import { z } from 'zod';
 import logo from '/assets/images/logo.svg';
 import Loader from '@/components/Loader';
 import { Link } from 'react-router-dom';
+import { createNewUser } from '@/lib/appwrite/api';
 
 const SignUp = () => {
   const isLoading = false;
@@ -28,8 +29,9 @@ const SignUp = () => {
       email: '',
     },
   });
-  function onSubmit(values: z.infer<typeof SignUpValidation>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof SignUpValidation>) {
+    const newUser = await createNewUser(values)
+    console.log(newUser);
   }
   return (
     <div className='sm:w-420 flex-center flex-col'>
