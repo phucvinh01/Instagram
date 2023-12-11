@@ -151,7 +151,7 @@ const SignUp = () => {
                 <FormControl>
                   <Input
                     className='shad-input'
-                   
+                    type='password'
                     {...field}
                   />
                 </FormControl>
