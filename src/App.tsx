@@ -49,15 +49,15 @@ const App = () => {
             element={<CreatePost />}
           />
           <Route
-            path="/update-post:id"
+            path="/update-post/:id"
             element={<UpdatePost />}
           />
           <Route
-            path="/post-detail:id"
+            path="/post-detail/:id"
             element={<PostDetail />}
           />
           <Route
-            path="/profile:id"
+            path="/profile/:id"
             element={<Profile />}
           />
         </Route>

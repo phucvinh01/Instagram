@@ -4,6 +4,7 @@ import React from 'react'
 import { Button } from './ui/button'
 import { Link } from 'react-router-dom'
 import { useUserContext } from '@/context/AuthContext'
+import PostStats from './PostStats'
 
 type PostCardProps = {
     post: Models.Document
@@ -56,7 +57,7 @@ const PostCard = ({post}: PostCardProps) => {
         </Link>
       </div>
 
-      <Link to={`/posts/${post.$id}`}>
+      <Link to={`/post-detail/${post.$id}`}>
         <div className="small-medium lg:base-medium py-5">
           <p>{post.caption}</p>
           <ul className="flex gap-1 mt-2">
@@ -75,7 +76,7 @@ const PostCard = ({post}: PostCardProps) => {
         />
       </Link>
 
-      {/* <PostStats post={post} userId={user.id} /> */}
+      <PostStats post={post} userId={user.id} />
     </div>
   )
 }

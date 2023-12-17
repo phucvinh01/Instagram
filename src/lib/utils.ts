@@ -24,4 +24,8 @@ export function formatRelativeTime(timestamp: string): string {
   }
 }
 
+export const checkIsLiked = (likeList: string[], userId: string) => {
+  return likeList?.includes(userId);
+};
+
 

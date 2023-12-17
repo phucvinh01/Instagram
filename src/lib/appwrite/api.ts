@@ -75,7 +75,6 @@ export async function getAccount() {
 export const getCurrentUser = async () => {
   try {
     const currentAccount = await getAccount();
-    console.log(currentAccount);
     if (!currentAccount) throw Error;
 
     const currentUser = await database.listDocuments(
@@ -207,7 +206,7 @@ export async function searchPosts(searchTerm: string) {
 }
 
 export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
-  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(10)];
 
   if (pageParam) {
     queries.push(Query.cursorAfter(pageParam.toString()));
@@ -340,7 +339,7 @@ export async function likePost(postId: string, likesArray: string[]) {
       config.postCollectionId,
       postId,
       {
-        likes: likesArray,
+        liked: likesArray,
       }
     );
 
@@ -360,12 +359,14 @@ export async function savePost(userId: string, postId: string) {
       config.saveCollectionId,
       ID.unique(),
       {
-        user: userId,
+        users: userId,
         post: postId,
       }
     );
 
     if (!updatedPost) throw Error;
+
+    console.log(updatedPost);
 
     return updatedPost;
   } catch (error) {

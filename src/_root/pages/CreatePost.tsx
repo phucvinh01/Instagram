@@ -1,5 +1,4 @@
 import FormPost from '@/components/forms/FormPost';
-import React from 'react';
 
 const CreatePost = () => {
   return (
@@ -13,7 +12,7 @@ const CreatePost = () => {
           />
           <p className='text-white font-bold text-left w-full'> Create post</p>
         </div>
-        <FormPost />
+        <FormPost action='create' />
       </div>
     </div>
   );
