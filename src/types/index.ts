@@ -1,3 +1,4 @@
+import { Models } from "appwrite";
 import React from "react";
 
 export type INavLink = {
@@ -57,3 +58,8 @@ export type INewUser = {
   username: string;
   password: string;
 };
+
+export type QueryResponse = {
+  posts: Models.Document;
+  nextPageParam: number | null;
+}

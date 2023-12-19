@@ -1,11 +1,7 @@
-import GridPostList from '@/components/GridPostList';
-import SearchResults from '@/components/SearchResults';
-import { Input } from '@/components/ui/input';
-import React, { useState } from 'react'
+
 
 const Explore = () => {
 
-  const [searchValue, setSearchValue] = useState<string>('')
 
 
   return (

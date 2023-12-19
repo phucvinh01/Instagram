@@ -41,7 +41,7 @@ const App = () => {
             element={<People />}
           />
           <Route
-            path='/saved'
+            path='/saved/:save'
             element={<Saved />}
           />
           <Route

@@ -1,7 +1,5 @@
 import { formatRelativeTime } from '@/lib/utils'
 import { Models } from 'appwrite'
-import React from 'react'
-import { Button } from './ui/button'
 import { Link } from 'react-router-dom'
 import { useUserContext } from '@/context/AuthContext'
 import PostStats from './PostStats'

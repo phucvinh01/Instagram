@@ -1,6 +1,7 @@
-import { INewPost, INewUser, IUpdatePost, IUpdateUser } from '@/types';
+import { INewPost, INewUser, IUpdatePost, IUpdateUser, QueryResponse } from '@/types';
 import { ID, account, avatars, config, database, storage } from './config';
 import { Query } from 'appwrite';
+import { QueryFunctionContext } from '@tanstack/react-query';
 
 export const createNewUser = async (user: INewUser) => {
   try {
@@ -206,7 +207,7 @@ export async function searchPosts(searchTerm: string) {
 }
 
 export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
-  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(10)];
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
 
   if (pageParam) {
     queries.push(Query.cursorAfter(pageParam.toString()));
@@ -226,7 +227,6 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
     console.log(error);
   }
 }
-
 // ============================== GET POST BY ID
 export async function getPostById(postId?: string) {
   if (!postId) throw Error;
@@ -523,6 +523,22 @@ export async function updateUser(user: IUpdateUser) {
     }
 
     return updatedUser;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getSavedPosts (userId: string) {
+ try {
+    const posts = await database.listDocuments(
+      config.databaseId,
+      config.saveCollectionId,
+      [ Query.equal('users',[userId]), Query.orderDesc("$createdAt"), Query.limit(9)]
+    );
+
+    if (!posts) throw Error;
+
+    return posts;
   } catch (error) {
     console.log(error);
   }
