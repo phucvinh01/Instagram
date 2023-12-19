@@ -1,7 +1,6 @@
-import { INewPost, INewUser, IUpdatePost, IUpdateUser, QueryResponse } from '@/types';
+import { INewPost, INewUser, IUpdatePost, IUpdateUser,  } from '@/types';
 import { ID, account, avatars, config, database, storage } from './config';
 import { Query } from 'appwrite';
-import { QueryFunctionContext } from '@tanstack/react-query';
 
 export const createNewUser = async (user: INewUser) => {
   try {

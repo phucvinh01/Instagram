@@ -1,5 +1,4 @@
 import {Outlet, Navigate} from 'react-router-dom'
-import img from '/public/assets/images/side-img.svg'
 const AuthLayout = () => {
 
     const isAuth = false
