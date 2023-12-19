@@ -22,7 +22,7 @@ import { useUserContext } from '@/context/AuthContext';
 const SignUp = () => {
    const { toast } = useToast();
   const navigate = useNavigate();
-  const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
+  const { checkAuthUser} = useUserContext();
 
   const form = useForm<z.infer<typeof SignUpValidation>>({
     resolver: zodResolver(SignUpValidation),
@@ -36,7 +36,7 @@ const SignUp = () => {
 
   // Queries
   const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccountMutation();
-  const { mutateAsync: signInAccount, isPending: isSigningInUser } = useSignInAccount();
+  const { mutateAsync: signInAccount } = useSignInAccount();
 
   // Handler
   const handleSignup = async (user: z.infer<typeof SignUpValidation>) => {

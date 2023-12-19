@@ -33,7 +33,7 @@ const SignIn = () => {
   });
 
   // Queries
-  const { mutateAsync: signInAccount, isPending: isSigningInUser } =
+  const { mutateAsync: signInAccount } =
     useSignInAccount();
 
   // Handler
