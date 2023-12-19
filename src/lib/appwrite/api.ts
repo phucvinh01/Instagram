@@ -84,7 +84,6 @@ export const getCurrentUser = async () => {
     );
 
     if (!currentUser) throw Error;
-    console.log(currentUser.documents[0]);
     return currentUser.documents[0];
   } catch (error) {
     console.log(error);
@@ -143,7 +142,6 @@ export async function createPost(post: INewPost) {
   }
 }
 
-// ============================== UPLOAD FILE
 export async function uploadFile(file: File) {
   try {
     const uploadedFile = await storage.createFile(
@@ -157,7 +155,6 @@ export async function uploadFile(file: File) {
   }
 }
 
-// ============================== GET FILE URL
 export function getFilePreview(fileId: string) {
   try {
     const fileUrl = storage.getFilePreview(
@@ -177,7 +174,6 @@ export function getFilePreview(fileId: string) {
   }
 }
 
-// ============================== DELETE FILE
 export async function deleteFile(fileId: string) {
   try {
     await storage.deleteFile(config.storageId, fileId);
@@ -188,7 +184,6 @@ export async function deleteFile(fileId: string) {
   }
 }
 
-// ============================== GET POSTS
 export async function searchPosts(searchTerm: string) {
   try {
     const posts = await database.listDocuments(
@@ -226,7 +221,7 @@ export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
     console.log(error);
   }
 }
-// ============================== GET POST BY ID
+
 export async function getPostById(postId?: string) {
   if (!postId) throw Error;
 
@@ -245,7 +240,6 @@ export async function getPostById(postId?: string) {
   }
 }
 
-// ============================== UPDATE POST
 export async function updatePost(post: IUpdatePost) {
   const hasFileToUpdate = post.file.length > 0;
 
@@ -309,7 +303,6 @@ export async function updatePost(post: IUpdatePost) {
   }
 }
 
-// ============================== DELETE POST
 export async function deletePost(postId?: string, imageId?: string) {
   if (!postId || !imageId) return;
 
@@ -330,7 +323,6 @@ export async function deletePost(postId?: string, imageId?: string) {
   }
 }
 
-// ============================== LIKE / UNLIKE POST
 export async function likePost(postId: string, likesArray: string[]) {
   try {
     const updatedPost = await database.updateDocument(
@@ -350,7 +342,6 @@ export async function likePost(postId: string, likesArray: string[]) {
   }
 }
 
-// ============================== SAVE POST
 export async function savePost(userId: string, postId: string) {
   try {
     const updatedPost = await database.createDocument(
@@ -365,14 +356,13 @@ export async function savePost(userId: string, postId: string) {
 
     if (!updatedPost) throw Error;
 
-    console.log(updatedPost);
 
     return updatedPost;
   } catch (error) {
     console.log(error);
   }
 }
-// ============================== DELETE SAVED POST
+
 export async function deleteSavedPost(savedRecordId: string) {
   try {
     const statusCode = await database.deleteDocument(
@@ -389,7 +379,6 @@ export async function deleteSavedPost(savedRecordId: string) {
   }
 }
 
-// ============================== GET USER'S POST
 export async function getUserPosts(userId?: string) {
   if (!userId) return;
 
@@ -408,7 +397,6 @@ export async function getUserPosts(userId?: string) {
   }
 }
 
-// ============================== GET POPULAR POSTS (BY HIGHEST LIKE COUNT)
 export async function getRecentPosts() {
   try {
     const posts = await database.listDocuments(
@@ -425,11 +413,6 @@ export async function getRecentPosts() {
   }
 }
 
-// ============================================================
-// USER
-// ============================================================
-
-// ============================== GET USERS
 export async function getUsers(limit?: number) {
   const queries: any[] = [Query.orderDesc("$createdAt")];
 
@@ -452,7 +435,6 @@ export async function getUsers(limit?: number) {
   }
 }
 
-// ============================== GET USER BY ID
 export async function getUserById(userId: string) {
   try {
     const user = await database.getDocument(
@@ -469,7 +451,6 @@ export async function getUserById(userId: string) {
   }
 }
 
-// ============================== UPDATE USER
 export async function updateUser(user: IUpdateUser) {
   const hasFileToUpdate = user.file.length > 0;
   try {

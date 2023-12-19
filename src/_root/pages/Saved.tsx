@@ -1,5 +1,6 @@
-import Loader from '@/components/Loader';
-import SavedOption from '@/components/SavedOption';
+
+import Loader from '@/components/shared/Loader';
+import SavedOption from '@/components/shared/SavedOption';
 import { Button } from '@/components/ui/button';
 import { useUserContext } from '@/context/AuthContext';
 import { useGetSavedPosts } from '@/lib/react-query/queryAndMutation';
@@ -11,7 +12,7 @@ const Saved = () => {
   const { data: posts, isPending: isPostLoading } = useGetSavedPosts(user.id);
 
   return (
-    <div className='flex flex-col gap-6 p-10 h-screen'>
+    <div className='flex flex-col gap-6 home-container'>
       <div className='flex gap-2 items-center justify-start mb-[30px]'>
         <img
           src='/assets/icons/save.svg'
@@ -21,6 +22,8 @@ const Saved = () => {
       </div>
 
       <SavedOption />
+
+      
       <div className='mt-[30px]'>
         {isPostLoading ? (
           <>

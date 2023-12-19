@@ -13,7 +13,7 @@ import { Input } from '@/components/ui/input';
 import { SignInValidation } from '@/lib/validation';
 import { z } from 'zod';
 import logo from '/assets/images/logo.svg';
-import Loader from '@/components/Loader';
+import Loader from '@/components/shared/Loader';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToast } from '@/components/ui/use-toast';
 import { useSignInAccount } from '@/lib/react-query/queryAndMutation';

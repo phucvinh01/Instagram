@@ -1,13 +1,14 @@
 import  { useEffect } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { useSignOutAccount } from '@/lib/react-query/queryAndMutation';
 import { useUserContext } from '@/context/AuthContext';
 import { sidebarLinks } from '@/constants';
 import { INavLink } from '@/types';
+import { Skeleton } from 'antd';
 
 const LeftSideBar = () => {
-  const { user } = useUserContext();
+  const { user,isLoading } = useUserContext();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const { mutate: signOut, isSuccess } = useSignOutAccount();
@@ -17,7 +18,7 @@ const LeftSideBar = () => {
     }
   }, [isSuccess]);
   return (
-    <nav className='leftsidebar'>
+    <nav className='leftsidebar fixed h-screen'>
       <div className='flex flex-col gap-7'>
         <Link
           className='flex gap-3 items-center'
@@ -27,19 +28,8 @@ const LeftSideBar = () => {
             alt='logo'
             width={170}
           />
-        </Link>
-        <Link
-          to={`/profile/${user.id}`}
-          className='flex gap-3 items-center'>
-          <img
-            src={user.imageUrl}
-            className='h-12 w-12 rounded-full'
-          />
-          <div className='flex flex-col gap-1'>
-            <p className='body-blod'>{user.name}</p>
-            <small>@{user.username}</small>
-          </div>
-        </Link>
+        </Link>   
+       
 
         <ul className='flex flex-col gap-4'>
           {sidebarLinks.map((item: INavLink) => {
@@ -66,6 +56,18 @@ const LeftSideBar = () => {
             );
           })}
         </ul>
+
+         {
+          isLoading ? (<Skeleton avatar/>) : (<> <Link
+          to={`/profile/${user.id}`}
+          className={`flex  items-center py-1 px-2 gap-2 leftsidebar-link group `}>
+          <img
+            src={user.imageUrl}
+            className='h-8 w-8 rounded-full'
+          /> 
+          <p>Profile</p>         
+        </Link></>)
+        }
         
       </div>
         <Button
