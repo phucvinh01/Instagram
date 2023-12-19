@@ -1,8 +1,7 @@
 import { Models } from 'appwrite';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { FaRegComment } from 'react-icons/fa6';
-import { TbLocationShare } from 'react-icons/tb';
+
 import { checkIsLiked } from '@/lib/utils';
 import {
   useDeleteSavedPost,
@@ -10,7 +9,7 @@ import {
   useLikePost,
   useSavePost,
 } from '@/lib/react-query/queryAndMutation';
-import { Heart, LassoIcon, Send, ShareIcon } from 'lucide-react';
+import { Heart, LassoIcon, Send } from 'lucide-react';
 
 type PostStatsProps = {
   post: Models.Document;
