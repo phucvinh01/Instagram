@@ -59,7 +59,7 @@ const LeftSideBar = () => {
 
          {
           isLoading ? (<Skeleton avatar/>) : (<> <Link
-          to={`/profile/${user.id}`}
+          to={`/profile/${user.username}`}
           className={`flex  items-center py-1 px-2 gap-2 leftsidebar-link group `}>
           <img
             src={user.imageUrl}

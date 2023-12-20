@@ -9,7 +9,7 @@ const RightSideBar = () => {
     <div className='right-side-bar'>
         {
           isLoading ? (<Skeleton avatar/>) : (<> <Link
-          to={`/profile/${user.id}`}
+          to={`/profile/${user.username}`}
           className={`flex  items-center py-1 px-2 gap-2  group `}>
           <img
             src={user.imageUrl}
@@ -22,8 +22,6 @@ const RightSideBar = () => {
                 
         </Link></>)
         }
-
-
         <div className='flex justify-between'>
           <p>Suggest for you</p>
           <p>See all</p>

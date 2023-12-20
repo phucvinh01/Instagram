@@ -69,13 +69,7 @@ export const useGetPostById = (postId?: string) => {
   });
 };
 
-export const useGetUserPosts = (userId?: string) => {
-  return useQuery({
-    queryKey: [QUERY_KEYS.GET_USER_POSTS, userId],
-    queryFn: () => getUserPosts(userId),
-    enabled: !!userId,
-  });
-};
+
 
 export const useUpdatePost = () => {
   const queryClient = useQueryClient();
@@ -207,6 +201,14 @@ export const useGetSavedPosts = (userId: string) => {
   return useQuery({
     queryKey: ['getSavePostByIdUser', userId],
     queryFn: () => getSavedPosts(userId),
+    enabled: !!userId,
+  });
+};
+
+export const useGetUserPosts = (userId?: string) => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_USER_POSTS, userId],
+    queryFn: () => getUserPosts(userId),
     enabled: !!userId,
   });
 };

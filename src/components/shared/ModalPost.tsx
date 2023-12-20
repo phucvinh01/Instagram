@@ -10,9 +10,11 @@ import { Button } from '../ui/button';
 type ModalPostProps = {
   post: Models.Document;
   option: 'img' | 'text';
+  widthImg?: string;
+  heightImg?: string
 };
 
-const ModalPost = ({ post, option }: ModalPostProps) => {
+const ModalPost = ({ post, option, widthImg, heightImg }: ModalPostProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useUserContext();
   const showModal = () => {
@@ -28,8 +30,7 @@ const ModalPost = ({ post, option }: ModalPostProps) => {
     <>
       {option === 'img' ? (
         <img
-
-          className='rounded-md max-h-[486px]'
+          className={`rounded-md ${heightImg ? `w-[${heightImg}]`: 'm-h-[486px]'} ${widthImg ? widthImg: 'm-w-[486px]'}`}
           src={post.imageUrl}
           alt={post.caption}
           onClick={showModal}
@@ -91,7 +92,7 @@ const ModalPost = ({ post, option }: ModalPostProps) => {
           </div>
           <img
             src={post.imageUrl}
-            className='lg:w-[60%]  w-full'
+            className='lg:w-[60%]  w-full max-h-[572px]'
           />
           <div className='lg:w-[40%] w-full flex flex-col lg:gap-5 gap-1'>
             <div className='border-b py-4 hidden lg:flex-between'>

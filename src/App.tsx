@@ -8,11 +8,13 @@ import { Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/toaster';
 import Explore from './_root/pages/Explore';
 import People from './_root/pages/People';
-import Saved from './_root/pages/Saved';
+import Saved from './_root/pages/Profile/Saved';
 import CreatePost from './_root/pages/CreatePost';
-import Profile from './_root/pages/Profile';
+import Profile from './_root/pages/Profile/Profile';
 import UpdatePost from './_root/pages/UpdatePost';
 import PostDetail from './_root/pages/PostDetail';
+import ProfileLayout from './_root/pages/Profile/ProfileLayout';
+import Tag from './_root/pages/Profile/Tag';
 const App = () => {
   return (
     <main className='flex'>
@@ -56,10 +58,21 @@ const App = () => {
             path="/post-detail/:id"
             element={<PostDetail />}
           />
-          <Route
-            path="/profile/:id"
-            element={<Profile />}
-          />
+          <Route element={<ProfileLayout />} >
+              <Route
+              path="/profile/:username"
+              element={<Profile />}
+            />
+             <Route
+              path="/profile/saved"
+              element={<Saved />}
+            />
+            <Route
+              path="/profile/tag"
+              element={<Tag />}
+            />
+          </Route>
+         
         </Route>
       </Routes>
       <Toaster />
